@@ -24,6 +24,30 @@ class UserRepository{
             throw error;
         }
     }
+
+    async getUserById(userId){
+        try {
+            return await User.findByPk(userId,{
+                attributes:["email","id"]
+            })
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+    async getUserByMail(mailId){
+        try {
+            return await User.findOne({
+                where:{
+                    email:mailId
+                }
+            })
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
 }
 
 module.exports=UserRepository
